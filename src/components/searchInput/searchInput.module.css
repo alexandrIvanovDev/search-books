@@ -1,0 +1,43 @@
+.inputWrapper {
+    position: relative;
+}
+
+.input {
+    width: 200px;
+    padding: 5px 55px 5px 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.2s;
+}
+:hover {
+    border-color: #b1b1b1;
+}
+:focus {
+    border-color: #b1b1b1;
+}
+
+.deleteIcon {
+    position: absolute;
+    top: 4px;
+    left: 145px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 5px;
+    left: 170px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.errorMessage {
+    color: red;
+    font-weight: bold;
+}

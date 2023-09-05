@@ -5,7 +5,10 @@ const instance = axios.create({
 })
 
 export const api = {
-    searchBooks(term: string) {
+    getBooks(term: string) {
         return instance.get(`volumes`, {params: {q: term, maxResults: 8}}).then(res => res.data)
+    },
+    getBook(id: string) {
+        return instance.get(`volumes/${id}`).then(res => res.data)
     }
 }

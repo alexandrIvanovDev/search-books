@@ -25,25 +25,27 @@ export type BooksType = {
     totalItems: number
 }
 export type BookType = {
-    kind: string,
-    id: string,
+    kind: string
+    id: string
     volumeInfo: {
         title: string
         authors: Array<string>
         publisher: string
         publishedDate: string
         description: string
-        categories: Array<string>,
+        categories: Array<string>
         imageLinks: {
-            smallThumbnail: string,
+            large: string
+            medium: string
+            smallThumbnail: string
             thumbnail: string
         },
-        language: string,
-        previewLink: string,
-        infoLink: string,
+        language: string
+        previewLink: string
+        infoLink: string
         canonicalVolumeLink: string
     },
-    buyLink: string,
+    buyLink: string
     searchInfo: {
         textSnippet: string
     }
