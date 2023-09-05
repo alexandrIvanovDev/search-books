@@ -3,7 +3,7 @@
     height: 400px;
     background: lightgrey;
     padding: 30px;
-    margin: 20px;
+    margin: 10px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +13,7 @@
     width: 150px;
     height: 200px;
     padding: 0 10px 10px;
+    cursor: pointer;
 }
 
 .information {
@@ -23,6 +24,8 @@
 
 .categories {
     padding-bottom: 10px;
+    color: #727272;
+    text-decoration: underline;
 }
 
 .titleWrapper {
@@ -40,28 +43,29 @@
     cursor: pointer;
 }
 
-[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 0; top: 0;
-    background: #3989c9;
-    color: #fff;
-    padding: 0.5em;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    pointer-events: none;
-    opacity: 0;
-    transition: 1s;
-}
+/*[data-tooltip]::after {*/
+/*    content: attr(data-tooltip);*/
+/*    position: absolute;*/
+/*    left: 0; top: 0;*/
+/*    background: #3989c9;*/
+/*    color: #fff;*/
+/*    padding: 0.5em;*/
+/*    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);*/
+/*    pointer-events: none;*/
+/*    opacity: 0;*/
+/*    transition: 1s;*/
+/*}*/
 
-[data-tooltip]:hover::after {
-    opacity: 1;
-    top: 4em;
-}
+/*[data-tooltip]:hover::after {*/
+/*    opacity: 1;*/
+/*    top: 4em;*/
+/*}*/
 
 .authors {
     margin-top: 10px;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    color: #727272;
 }
