@@ -1,10 +1,23 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {api} from '../../api/api.ts';
+import {FilterType} from '../../components/header/Header.tsx';
 
 export const getBooksThunk = createAsyncThunk('books/getBooksThunk', async (term: string, {dispatch, rejectWithValue}) => {
     dispatch(setIsLoading(true))
     try {
         return await api.getBooks(term)
+    } catch (e) {
+        rejectWithValue(null)
+    } finally {
+        dispatch(setIsLoading(false))
+    }
+})
+
+export const changeFilterThunk = createAsyncThunk('books/changeFilterThunk', async (arg: {term: string, filter: FilterType}, {dispatch, rejectWithValue}) => {
+    dispatch(setIsLoading(true))
+    console.log('ok')
+    try {
+        return await api.changeFilter(arg.term, arg.filter)
     } catch (e) {
         rejectWithValue(null)
     } finally {
@@ -26,6 +39,10 @@ export const slice = createSlice({
     },
     extraReducers: builder => {
         builder.addCase(getBooksThunk.fulfilled, (state, action) => {
+            state.items = action.payload.items
+            state.totalItems = action.payload.totalItems
+        });
+        builder.addCase(changeFilterThunk.fulfilled, (state, action) => {
             state.items = action.payload.items
             state.totalItems = action.payload.totalItems
         })

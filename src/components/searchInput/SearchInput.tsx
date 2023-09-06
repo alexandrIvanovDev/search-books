@@ -1,6 +1,6 @@
 import {RxCross2} from 'react-icons/rx';
 import {AiOutlineSearch} from 'react-icons/ai';
-import {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react';
+import {ChangeEvent, FC, KeyboardEvent, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import s from './SearchInput.module.css'
 import clsx from 'clsx';
@@ -9,8 +9,12 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {getBooksThunk} from '../../store/reducers/booksReducer.ts';
 import {AppDispatch} from '../../store/store.ts';
 
-export const SearchInput = () => {
-    const [value, setValue] = useState('')
+type PropsType = {
+    value: string
+    setValue: (value: string) => void
+}
+
+export const SearchInput:FC<PropsType> = ({value, setValue}) => {
     const [error, setError] = useState<string | null>(null)
 
     const dispatch = useDispatch<AppDispatch>()

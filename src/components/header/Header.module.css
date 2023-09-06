@@ -1,5 +1,5 @@
 .header {
-    height: 100px;
+    min-height: 120px;
     background: rgba(255,199,4,0.62);
     width: 100vw;
 }
@@ -11,4 +11,10 @@
 
 .title {
     text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .content {
+        width: 100%;
+    }
 }
