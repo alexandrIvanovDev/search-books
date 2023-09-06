@@ -1,5 +1,5 @@
 import s from './Header.module.css'
-import {SearchInput} from '../searchInput/searchInput.tsx';
+import {SearchInput} from '../searchInput/SearchInput.tsx';
 
 export const Header = () => {
     return (

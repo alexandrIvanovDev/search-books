@@ -1,19 +1,19 @@
 import {RxCross2} from 'react-icons/rx';
 import {AiOutlineSearch} from 'react-icons/ai';
-import {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {api} from '../../api/api.ts';
-import {getBooks} from '../../store/reducers/booksReducer.ts';
+import {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import s from './searchInput.module.css'
+import s from './SearchInput.module.css'
 import clsx from 'clsx';
 import {FiAlertCircle} from 'react-icons/fi';
 import {useLocation, useNavigate} from 'react-router-dom';
+import {getBooksThunk} from '../../store/reducers/booksReducer.ts';
+import {AppDispatch} from '../../store/store.ts';
 
 export const SearchInput = () => {
     const [value, setValue] = useState('')
     const [error, setError] = useState<string | null>(null)
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -34,8 +34,8 @@ export const SearchInput = () => {
             setError('This field is empty')
             return
         }
-        const res = await api.getBooks(value)
-        dispatch(getBooks(res))
+
+        dispatch(getBooksThunk(value))
 
         if (location.pathname !== '/') {
             navigate('/')
@@ -50,6 +50,12 @@ export const SearchInput = () => {
 
     const inputClass = clsx(s.input, error && s.error)
     const icon = clsx(s.searchIcon, error && s.errorMessage)
+
+    useEffect(() => {
+        // if (location.pathname !== '/') { TODO
+        //     clearInput()
+        // }
+    }, [location.pathname]);
 
     return (
         <div className={s.inputWrapper}>
