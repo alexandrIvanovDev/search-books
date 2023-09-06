@@ -1,4 +1,3 @@
-import './App.css'
 import {Router} from './router.tsx';
 
 function App() {

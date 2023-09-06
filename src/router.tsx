@@ -15,7 +15,7 @@ const routes: RouteObject[] = ([
     }
 ]);
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         element: <Layout />,
         errorElement: <div>Error Boundary</div>,

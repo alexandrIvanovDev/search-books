@@ -15,7 +15,7 @@ export const Book: FC<PropsType> = ({book}) => {
                 <img src={book.volumeInfo.imageLinks?.thumbnail || bookImg} alt="bookImg" className={s.img}/>
             </Link>
             <div className={s.information}>
-                <div className={s.categories}>{book.volumeInfo.categories}</div>
+                <div className={s.categories}>{book.volumeInfo.categories && book.volumeInfo.categories[0]}</div>
                 <div className={s.titleWrapper}>
                     <Link to={`/${book.id}`}
                           className={s.title}
