@@ -10,14 +10,17 @@ export const BooksPage = () => {
 
     return (
         <div className={s.container}>
-            {isLoading && <Loader />}
-            {totalItems !== 0 && <h3 className={s.result}>Found {totalItems} results</h3>}
-            <div className={s.books}>
-                {items
-                    ? items.map(b => <Book book={b} key={b.id}/>)
-                    : <h2>Books not found</h2>
-                }
-            </div>
+            {isLoading
+                ? <Loader/>
+                : <div>
+                    {totalItems !== 0 && <h3 className={s.result}>Found {totalItems} results</h3>}
+                    <div className={s.books}>
+                        {items
+                            ? items.map(b => <Book book={b} key={b.id}/>)
+                            : <h2>Books not found</h2>}
+                    </div>
+                </div>
+            }
         </div>
     )
 }

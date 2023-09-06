@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {BookType} from '../../store/reducers/booksReducer.ts';
 import {api} from '../../api/api.ts';
 import {useFetching} from '../../hooks/useFetching.ts';
-import {BookItem} from '../../components/bookItem/BookItem.tsx';
+import {BookCard} from '../../components/bookItem/BookCard.tsx';
 import s from './BookItemPage.module.css'
 import {Loader} from '../../components/loader/Loader.tsx';
 
@@ -27,7 +27,7 @@ export const BookItemPage = () => {
             {error && <div>Error: {error}</div>}
             {isLoading
                 ? <Loader/>
-                : book && <BookItem book={book}/>
+                : book && <BookCard book={book}/>
             }
         </div>
     )

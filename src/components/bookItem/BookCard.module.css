@@ -1,0 +1,76 @@
+.imgWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #d5d5d5;
+    padding: 30px;
+    width: 40%;
+    height: 600px;
+}
+
+.img {
+    width: 350px;
+    height: 450px;
+}
+
+.information {
+    width: 100%;
+    padding: 40px 30px;
+
+}
+
+.categories {
+    color: #9b9999;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.authors {
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.description {
+    margin-bottom: 20px;
+}
+
+.footerBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    outline: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+}
+
+.button:disabled {
+    pointer-events: none;
+}
+
+.button:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+}
+
+.button:active {
+    box-shadow: none;
+}
