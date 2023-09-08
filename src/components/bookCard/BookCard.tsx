@@ -18,7 +18,7 @@ export const BookCard: FC<PropsType> = ({book}) => {
             <div className={s.information}>
                 <div className={s.categories}>{book.volumeInfo.categories}</div>
                 <h3 className={s.title}>{book.volumeInfo.title}</h3>
-                <div className={s.authors}>{book.volumeInfo.authors.join(', ')}</div>
+                <div className={s.authors}>{book.volumeInfo.authors?.join(', ')}</div>
                 <div className={s.description}>{book.volumeInfo.description}</div>
                 <div className={s.footerBlock}>
                     <div>Pages count: {book.volumeInfo.pageCount}</div>

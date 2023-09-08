@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {BookType} from '../../store/reducers/booksReducer.ts';
 import {api} from '../../api/api.ts';
 import {useFetching} from '../../hooks/useFetching.ts';
-import {BookCard} from '../../components/bookItem/BookCard.tsx';
+import {BookCard} from '../../components/bookCard/BookCard.tsx';
 import s from './BookItemPage.module.css'
 import {Loader} from '../../components/loader/Loader.tsx';
 
