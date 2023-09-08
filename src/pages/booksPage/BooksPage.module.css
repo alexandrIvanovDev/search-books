@@ -11,6 +11,16 @@
 
 .books {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
+}
+
+.btnWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin: 20px 0;
+    /*text-align: center;*/
 }

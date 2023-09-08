@@ -1,10 +1,16 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {api} from '../../api/api.ts';
-import {FilterType} from '../../components/header/Header.tsx';
+import {OrderFilterType} from '../../components/header/Header.tsx';
+import {setOrder, setSearchTerm, setStartIndex} from './filterReducer.ts';
 
-export const getBooksThunk = createAsyncThunk('books/getBooksThunk', async (term: string, {dispatch, rejectWithValue}) => {
+export const getBooksThunk = createAsyncThunk('books/getBooksThunk', async (term: string, {
+    dispatch,
+    rejectWithValue
+}) => {
     dispatch(setIsLoading(true))
     try {
+        dispatch(setStartIndex(8))
+        dispatch(setSearchTerm(term))
         return await api.getBooks(term)
     } catch (e) {
         rejectWithValue(null)
@@ -13,11 +19,33 @@ export const getBooksThunk = createAsyncThunk('books/getBooksThunk', async (term
     }
 })
 
-export const changeFilterThunk = createAsyncThunk('books/changeFilterThunk', async (arg: {term: string, filter: FilterType}, {dispatch, rejectWithValue}) => {
+export const changeFilterThunk = createAsyncThunk('books/changeFilterThunk', async (arg: {
+    term: string,
+    filter: OrderFilterType
+}, {dispatch, rejectWithValue}) => {
     dispatch(setIsLoading(true))
-    console.log('ok')
     try {
+        dispatch(setSearchTerm(arg.term))
+        dispatch(setOrder(arg.filter))
         return await api.changeFilter(arg.term, arg.filter)
+    } catch (e) {
+        rejectWithValue(null)
+    } finally {
+        dispatch(setIsLoading(false))
+    }
+})
+
+export const loadBooksThunk = createAsyncThunk('books/loadBooksThunk', async (_, {
+    dispatch,
+    rejectWithValue,
+    getState
+}) => {
+    dispatch(setIsLoading(true))
+    try {
+        const index = getState().filter.startIndex + 30
+        const term = getState().filter.term
+        dispatch(setStartIndex(index))
+        return await api.loadMoreBooks(term, index)
     } catch (e) {
         rejectWithValue(null)
     } finally {
@@ -45,6 +73,9 @@ export const slice = createSlice({
         builder.addCase(changeFilterThunk.fulfilled, (state, action) => {
             state.items = action.payload.items
             state.totalItems = action.payload.totalItems
+        })
+        builder.addCase(loadBooksThunk.fulfilled, (state, action) => {
+            state.items = [...state.items, ...action.payload.items]
         })
     }
 })
