@@ -9,8 +9,13 @@
     margin: 0 auto;
 }
 
+a {
+    text-decoration: none;
+}
+
 .title {
     text-align: center;
+    color: black;
 }
 
 @media (max-width: 1200px) {

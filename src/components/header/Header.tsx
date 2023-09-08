@@ -2,45 +2,42 @@ import s from './Header.module.css'
 import {SearchInput} from '../searchInput/SearchInput.tsx';
 import {ChangeEvent, FC, useState} from 'react';
 import {changeFilterThunk} from '../../store/reducers/booksReducer.ts';
-import {useDispatch} from 'react-redux';
-import {AppDispatch} from '../../store/store.ts';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '../../store/store.ts';
+import {Link} from 'react-router-dom';
 
-export type FilterType = 'relevance' | 'newest'
+export type OrderFilterType = 'relevance' | 'newest'
 
 export type OptionType = {
-    value: FilterType
+    value: OrderFilterType
     name: string
 }
 
 export const Header = () => {
+    const {orderBy} = useSelector((state: RootState) => state.filter)
     const [value, setValue] = useState('')
-    const [filter, setFilter] = useState<FilterType>('newest')
+    // const [filter, setFilter] = useState<OrderFilterType>(orderBy)
 
     const dispatch = useDispatch<AppDispatch>()
-
-    console.log(filter)
 
     const option: Array<OptionType> = [
         {value: 'relevance', name: 'Relevance'},
         {value: 'newest', name: 'Newest'}
     ]
 
-    const changeFilter = (newFilterValue: FilterType) => {
-        setFilter(newFilterValue)
-        console.log(filter)
-        dispatch(changeFilterThunk({term: value, filter: filter}))
+    const changeFilter = (newFilterValue: OrderFilterType) => {
+        dispatch(changeFilterThunk({term: value, filter: newFilterValue}))
     }
 
     return (
         <div className={s.header}>
             <div className={s.content}>
-                <h1 className={s.title}>Search for books</h1>
+                <Link to="/"><h1 className={s.title}>Search for books</h1></Link>
                 <div style={{display: 'flex'}}>
                     <SearchInput value={value} setValue={setValue}/>
 
                     <Filter
-                        filter={filter}
-                        setFilter={setFilter}
+                        filter={orderBy}
                         changeFilter={changeFilter}
                         value={value}
                         option={option}
@@ -52,9 +49,8 @@ export const Header = () => {
 }
 
 type PropsType = {
-    filter: FilterType
-    setFilter: (filterValue: FilterType) => void
-    changeFilter: (value: FilterType) => void
+    filter: OrderFilterType
+    changeFilter: (value: OrderFilterType) => void
     value: string
     option: Array<OptionType>
 }
@@ -62,14 +58,12 @@ type PropsType = {
 export const Filter: FC<PropsType> = ({filter, changeFilter, value, option}) => {
 
     const onChangeFilter = (e: ChangeEvent<HTMLSelectElement>) => {
-        changeFilter(e.currentTarget.value as FilterType)
+        changeFilter(e.currentTarget.value as OrderFilterType)
     }
 
-    console.log(filter)
-
     return (
-        <div>
-            <select style={{padding: 5}}
+        <div style={{marginLeft: 20}}>
+            <select style={{padding: 5, cursor: 'pointer'}}
                     value={filter}
                     onChange={onChangeFilter}
                     disabled={value.trim() === ''}
@@ -78,8 +72,6 @@ export const Filter: FC<PropsType> = ({filter, changeFilter, value, option}) => 
 
                 {option.map(o => <option value={o.value} key={o.value}>{o.name}</option>)}
 
-                {/*<option value="relevance">Relevance</option>*/}
-                {/*<option value="newest">Newest</option>*/}
             </select>
         </div>
     )
