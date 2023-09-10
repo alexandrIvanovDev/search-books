@@ -5,7 +5,7 @@ const instance = axios.create({
     baseURL: 'https://www.googleapis.com/books/v1/'
 })
 
-const key = 'AIzaSyBkAwa3r4r6fz7QnXtmpdhRegYcKP-3xG0';
+const key = import.meta.env.VITE_API_KEY
 
 export const api = {
     async getBooks(term: string, newFilterValue: OrderFilterType = 'relevance', category: string) {
