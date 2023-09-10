@@ -1,23 +1,20 @@
 import {RxCross2} from 'react-icons/rx';
 import {AiOutlineSearch} from 'react-icons/ai';
-import {ChangeEvent, FC, KeyboardEvent, useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
 import s from './SearchInput.module.css'
 import clsx from 'clsx';
 import {FiAlertCircle} from 'react-icons/fi';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {getBooksThunk} from '../../store/reducers/booksReducer.ts';
-import {AppDispatch} from '../../store/store.ts';
 
 type PropsType = {
     value: string
     setValue: (value: string) => void
+    searchBooks: () => void
 }
 
-export const SearchInput:FC<PropsType> = ({value, setValue}) => {
+export const SearchInput:FC<PropsType> = ({value, setValue, searchBooks}) => {
     const [error, setError] = useState<string | null>(null)
 
-    const dispatch = useDispatch<AppDispatch>()
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -33,13 +30,13 @@ export const SearchInput:FC<PropsType> = ({value, setValue}) => {
         setValue(e.currentTarget.value)
     }
 
-    const searchBooks = async () => {
+    const search = async () => {
         if (value.trim() === '') {
             setError('This field is empty')
             return
         }
 
-        dispatch(getBooksThunk(value))
+        searchBooks()
 
         if (location.pathname !== '/') {
             navigate('/')
@@ -48,18 +45,12 @@ export const SearchInput:FC<PropsType> = ({value, setValue}) => {
 
     const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            searchBooks()
+            search()
         }
     }
 
     const inputClass = clsx(s.input, error && s.error)
     const icon = clsx(s.searchIcon, error && s.errorMessage)
-
-    useEffect(() => {
-        // if (location.pathname !== '/') { TODO
-        //     clearInput()
-        // }
-    }, [location.pathname]);
 
     return (
         <div className={s.inputWrapper}>
@@ -73,7 +64,7 @@ export const SearchInput:FC<PropsType> = ({value, setValue}) => {
             />
             {error && <div className={s.errorMessage}>{error}</div>}
             {value && <RxCross2 className={s.deleteIcon} onClick={clearInput}/>}
-            {error ? <FiAlertCircle className={icon}/> : <AiOutlineSearch className={s.searchIcon} onClick={searchBooks}/>}
+            {error ? <FiAlertCircle className={icon}/> : <AiOutlineSearch className={s.searchIcon} onClick={search}/>}
         </div>
     )
 }

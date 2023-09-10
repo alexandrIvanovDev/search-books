@@ -1,33 +1,22 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {api} from '../../api/api.ts';
 import {OrderFilterType} from '../../components/header/Header.tsx';
-import {setOrder, setSearchTerm, setStartIndex} from './filterReducer.ts';
+import {changeCategory, setSearchTerm, setStartIndex} from './filterReducer.ts';
 
-export const getBooksThunk = createAsyncThunk('books/getBooksThunk', async (term: string, {
+export const fetchBooks = createAsyncThunk('books/getBooksThunk', async (arg: {
+    term: string,
+    orderBy: OrderFilterType
+    category: string
+}, {
     dispatch,
     rejectWithValue
 }) => {
     dispatch(setIsLoading(true))
     try {
         dispatch(setStartIndex(8))
-        dispatch(setSearchTerm(term))
-        return await api.getBooks(term)
-    } catch (e) {
-        rejectWithValue(null)
-    } finally {
-        dispatch(setIsLoading(false))
-    }
-})
-
-export const changeFilterThunk = createAsyncThunk('books/changeFilterThunk', async (arg: {
-    term: string,
-    filter: OrderFilterType
-}, {dispatch, rejectWithValue}) => {
-    dispatch(setIsLoading(true))
-    try {
         dispatch(setSearchTerm(arg.term))
-        dispatch(setOrder(arg.filter))
-        return await api.changeFilter(arg.term, arg.filter)
+        dispatch(changeCategory(arg.category))
+        return await api.getBooks(arg.term, arg.orderBy, arg.category)
     } catch (e) {
         rejectWithValue(null)
     } finally {
@@ -42,7 +31,11 @@ export const loadBooksThunk = createAsyncThunk('books/loadBooksThunk', async (_,
 }) => {
     dispatch(setIsLoading(true))
     try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const index = getState().filter.startIndex + 30
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const term = getState().filter.term
         dispatch(setStartIndex(index))
         return await api.loadMoreBooks(term, index)
@@ -66,11 +59,7 @@ export const slice = createSlice({
         }
     },
     extraReducers: builder => {
-        builder.addCase(getBooksThunk.fulfilled, (state, action) => {
-            state.items = action.payload.items
-            state.totalItems = action.payload.totalItems
-        });
-        builder.addCase(changeFilterThunk.fulfilled, (state, action) => {
+        builder.addCase(fetchBooks.fulfilled, (state, action) => {
             state.items = action.payload.items
             state.totalItems = action.payload.totalItems
         })

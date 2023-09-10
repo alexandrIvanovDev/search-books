@@ -6,6 +6,7 @@ export const slice = createSlice({
     initialState: {
         term: '',
         orderBy: 'relevance',
+        category: 'all',
         startIndex: 0
     } as InitialStateType,
     reducers: {
@@ -17,17 +18,20 @@ export const slice = createSlice({
         },
         setStartIndex: (state, action: PayloadAction<number>) => {
             state.startIndex = action.payload
+        },
+        changeCategory: (state, action: PayloadAction<string>) => {
+            state.category = action.payload
         }
     }
 })
 
-export const {setSearchTerm, setOrder, setStartIndex} = slice.actions
+export const {setSearchTerm, setOrder, setStartIndex, changeCategory} = slice.actions
 
 export default slice.reducer
 
 type InitialStateType = {
     term: string
     orderBy: OrderFilterType
+    category: string
     startIndex: number
-    // categories: ''
 }

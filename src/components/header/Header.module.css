@@ -7,15 +7,27 @@
 .content {
     width: 1200px;
     margin: 0 auto;
-}
-
-a {
-    text-decoration: none;
+    height: 100%;
 }
 
 .title {
     text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
     color: black;
+}
+
+.selectSort {
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.selectSort:disabled {
+    cursor: initial;
 }
 
 @media (max-width: 1200px) {

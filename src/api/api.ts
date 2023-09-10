@@ -2,21 +2,30 @@ import axios from 'axios';
 import {OrderFilterType} from '../components/header/Header.tsx';
 
 const instance = axios.create({
-    baseURL: 'https://www.googleapis.com/books/v1/volumes/'
+    baseURL: 'https://www.googleapis.com/books/v1/'
 })
 
+const key = 'AIzaSyBkAwa3r4r6fz7QnXtmpdhRegYcKP-3xG0';
+
 export const api = {
-    getBooks(term: string) {
-        return instance.get(``, {params: {q: term, subject: 'history', maxResults: 8}}).then(res => res.data)
-        // ?q=${searchTerm}+subject:${category} для фильтрации по категориям
+    async getBooks(term: string, newFilterValue: OrderFilterType = 'relevance', category: string) {
+        const subject = category !== 'all' ? `+subject:${category}` : ''
+
+        const res = await instance.get(`volumes?q=${term}${subject}`, {
+            params: {
+                orderBy: newFilterValue,
+                maxResults: 8,
+                key
+            }
+        });
+        return res.data;
     },
-    getBook(id: string) {
-        return instance.get(`${id}`).then(res => res.data)
+    async getBook(id: string) {
+        const res = await instance.get(`volumes/${id}`, {params: {key}});
+        return res.data;
     },
-    changeFilter(term: string, newFilterValue: OrderFilterType = 'relevance') {
-        return instance.get(``, {params: {q: term, orderBy: newFilterValue, maxResults: 8}}).then(res => res.data)
-    },
-    loadMoreBooks(term: string, startIndex: number) {
-        return instance.get('', {params: {q: term, maxResults: 30, startIndex}}).then(res => res.data)
+    async loadMoreBooks(term: string, startIndex: number) {
+        const res = await instance.get('volumes?', {params: {q: term, maxResults: 30, startIndex, key}});
+        return res.data;
     }
 }
