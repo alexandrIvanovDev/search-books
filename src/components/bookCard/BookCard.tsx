@@ -11,7 +11,7 @@ type PropsType = {
 export const BookCard: FC<PropsType> = ({book}) => {
     const navigate = useNavigate()
     return (
-        <>
+        <div className={s.content}>
             <div className={s.imgWrapper}>
                 <img src={book.volumeInfo.imageLinks.medium || bookImg} alt="img" className={s.img}/>
             </div>
@@ -25,6 +25,6 @@ export const BookCard: FC<PropsType> = ({book}) => {
                     <button onClick={() => navigate(-1)} className={s.button}>Back</button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
