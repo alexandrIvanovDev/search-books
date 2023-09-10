@@ -3,8 +3,8 @@
 }
 
 .input {
-    width: 200px;
-    padding: 5px 55px 5px 10px;
+    width: 250px;
+    padding: 10px 55px 10px 15px;
     border: 1px solid lightgrey;
     border-radius: 5px;
     outline: none;
@@ -21,17 +21,17 @@
 
 .deleteIcon {
     position: absolute;
-    top: 4px;
-    left: 145px;
-    font-size: 24px;
+    top: 8px;
+    right: 35px;
+    font-size: 26px;
     cursor: pointer;
 }
 
 .searchIcon {
     position: absolute;
-    top: 5px;
-    left: 170px;
-    font-size: 24px;
+    top: 9px;
+    right: 10px;
+    font-size: 26px;
     cursor: pointer;
 }
 

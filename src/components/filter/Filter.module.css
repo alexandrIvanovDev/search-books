@@ -1,0 +1,13 @@
+.content {
+    margin-left: 20px;
+}
+
+.categorySelect {
+    margin-left: 20px;
+}
+
+@media (max-width: 540px) {
+    .content {
+        margin: 10px 0;
+    }
+}

@@ -1,6 +1,6 @@
 .header {
     min-height: 120px;
-    background: rgba(255,199,4,0.62);
+    background: rgba(255, 199, 4, 0.62);
     width: 100vw;
 }
 
@@ -8,11 +8,15 @@
     width: 1200px;
     margin: 0 auto;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .title {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 a {
@@ -20,18 +24,20 @@ a {
     color: black;
 }
 
-.selectSort {
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.selectSort:disabled {
-    cursor: initial;
+.filterBlock {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
 }
 
 @media (max-width: 1200px) {
     .content {
         width: 100%;
+    }
+}
+
+@media (max-width: 540px) {
+    .filterBlock {
+        flex-direction: column;
     }
 }
