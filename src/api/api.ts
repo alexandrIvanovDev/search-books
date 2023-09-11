@@ -8,10 +8,10 @@ const instance = axios.create({
 const key = import.meta.env.VITE_API_KEY
 
 export const api = {
-    async getBooks(term: string, newFilterValue: OrderFilterType = 'relevance', category: string) {
-        const subject = category !== 'all' ? `+subject:${category}` : ''
+    async fetchBooks(term: string, newFilterValue: OrderFilterType = 'relevance', category: string) {
+        const categories = category !== 'all' ? `+subject:${category}` : ''
 
-        const res = await instance.get(`volumes?q=${term}${subject}`, {
+        const res = await instance.get(`volumes?q=${term}${categories}`, {
             params: {
                 orderBy: newFilterValue,
                 maxResults: 8,

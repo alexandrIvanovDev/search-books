@@ -3,19 +3,21 @@ import {AppDispatch, RootState} from '../../store/store.ts';
 import {Book} from '../../components/book/Book.tsx';
 import s from './BooksPage.module.css'
 import {Loader} from '../../components/loader/Loader.tsx';
-import buttonStyle from '../../components/bookCard/BookCard.module.css'
+import buttonStyle from '../bookCardPage/BookCardPage.module.css'
 import {loadBooksThunk} from '../../store/reducers/booksReducer.ts';
+import clsx from 'clsx';
 
 
 export const BooksPage = () => {
     const {items, totalItems, isLoading} = useSelector((state: RootState) => state.books)
-    // const {startIndex, orderBy, term} = useSelector((state: RootState) => state.filter)
 
     const dispatch = useDispatch<AppDispatch>()
 
     const loadBooks = async () => {
         dispatch(loadBooksThunk())
     }
+
+    const btnClass = clsx(buttonStyle.button, s.btn)
 
     return (
         <div className={s.container}>
@@ -29,7 +31,7 @@ export const BooksPage = () => {
                             : <h2>Books not found</h2>}
                     </div>
                     <div className={s.btnWrapper}>
-                        {totalItems !== 0 && <button onClick={loadBooks} className={`${buttonStyle.button} ${s.btn}`}>Load more</button>}
+                        {totalItems !== 0 && <button onClick={loadBooks} className={btnClass}>Load more</button>}
                     </div>
                 </div>
             }

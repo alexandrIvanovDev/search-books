@@ -16,7 +16,7 @@ export const fetchBooks = createAsyncThunk('books/getBooksThunk', async (arg: {
         dispatch(setStartIndex(8))
         dispatch(setSearchTerm(arg.term))
         dispatch(changeCategory(arg.category))
-        return await api.getBooks(arg.term, arg.orderBy, arg.category)
+        return await api.fetchBooks(arg.term, arg.orderBy, arg.category)
     } catch (e) {
         rejectWithValue(null)
     } finally {
