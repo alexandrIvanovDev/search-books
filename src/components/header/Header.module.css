@@ -1,7 +1,7 @@
 .header {
     min-height: 150px;
-    /*background: rgba(255, 199, 4, 0.62);*/
-    background-image: url("../../assets/background.webp"), linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%);;
+    background-image: url("../../assets/background.webp"), linear-gradient(0deg, rgba(255,255,255,1) 0%, rgb(74, 73, 73) 100%);
+    background-size: cover;
     background-blend-mode: multiply;
     width: 100vw;
     display: flex;

@@ -30,7 +30,7 @@ export const BookCardPage = () => {
                 ? <Loader/>
                 : book && <div className={s.book}>
                 <div className={s.imgWrapper}>
-                    <img src={book.volumeInfo.imageLinks.medium || bookImg} alt="img" className={s.img}/>
+                    <img src={book.volumeInfo.imageLinks?.medium || bookImg} alt="img" className={s.img}/>
                 </div>
                 <div className={s.information}>
                     <div className={s.categories}>{book.volumeInfo.categories}</div>
