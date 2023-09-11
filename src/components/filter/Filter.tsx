@@ -1,6 +1,5 @@
 import {ChangeEvent, FC} from 'react';
-import {useDispatch} from 'react-redux';
-import {AppDispatch} from '../../store/store.ts';
+import {useAppDispatch} from '../../store/store.ts';
 import {changeCategory, setOrder} from '../../store/reducers/filterReducer.ts';
 import {fetchBooks} from '../../store/reducers/booksReducer.ts';
 import {OptionType, OrderFilterType} from '../header/Header.tsx';
@@ -18,7 +17,7 @@ export const Filter: FC<PropsType> = (props) => {
 
     const {orderByFilter, orderByOptions, value, categoryFilter, categoriesOptions} = props
 
-    const dispatch = useDispatch<AppDispatch>()
+    const dispatch = useAppDispatch()
 
     const onChangeFilter = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setOrder(e.currentTarget.value as OrderFilterType))

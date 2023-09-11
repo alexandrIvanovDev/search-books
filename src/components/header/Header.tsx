@@ -1,11 +1,11 @@
 import s from './Header.module.css'
 import {SearchInput} from '../searchInput/SearchInput.tsx';
 import {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, RootState} from '../../store/store.ts';
+import {useAppDispatch} from '../../store/store.ts';
 import {Link, useLocation} from 'react-router-dom';
 import {fetchBooks} from '../../store/reducers/booksReducer.ts';
 import {Filter} from '../filter/Filter.tsx';
+import {useTypedSelector} from '../../hooks/useTypedSelector.ts';
 
 export type OrderFilterType = 'relevance' | 'newest'
 
@@ -15,12 +15,12 @@ export type OptionType = {
 }
 
 export const Header = () => {
-    const {orderBy, category} = useSelector((state: RootState) => state.filter)
+    const {orderBy, category} = useTypedSelector(state => state.filter)
     const [value, setValue] = useState('')
 
     const location = useLocation()
 
-    const dispatch = useDispatch<AppDispatch>()
+    const dispatch = useAppDispatch()
 
     const sortOptions: Array<OptionType> = [
         {value: 'relevance', name: 'Relevance'},
