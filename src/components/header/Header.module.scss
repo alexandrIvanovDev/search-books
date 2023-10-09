@@ -39,8 +39,10 @@
 }
 
 @media (max-width: 1200px) {
-  .content {
-    width: 100%;
+  .header {
+    .content {
+      width: 100%;
+    }
   }
 }
 
