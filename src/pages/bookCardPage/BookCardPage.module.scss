@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 2rem;
 
   .book {
     display: flex;
@@ -52,6 +52,12 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .content {
+    width: 95%;
+  }
+}
+
 @media (max-width: 900px) {
   .img {
     width: 250px;
@@ -59,20 +65,23 @@
 }
 
 @media (max-width: 700px) {
-  .book {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .content {
+    //width: 100%;
+    margin: 1rem;
+    .book {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-  .imgWrapper {
-    margin-top: 20px;
-    padding: 20px;
-    width: 70%;
-    height: 90%;
-  }
+      .imgWrapper {
+        padding: 20px;
+        width: 70%;
+        height: 90%;
 
-  .img {
-    width: 100%;
+        .img {
+          width: 100%;
+        }
+      }
+    }
   }
 }
