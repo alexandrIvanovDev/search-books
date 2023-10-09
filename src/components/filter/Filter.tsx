@@ -6,7 +6,7 @@ import {
 } from '../../store/reducers/filterReducer.ts';
 import { fetchBooks } from '../../store/reducers/booksReducer.ts';
 import { OptionType, OrderFilterType } from '../header/Header.tsx';
-import s from './Filter.module.css';
+import s from './Filter.module.scss';
 import { Select } from '../select/Select.tsx';
 
 type PropsType = {

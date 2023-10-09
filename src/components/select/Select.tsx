@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import s from './Select.module.css';
+import s from './Select.module.scss';
 import { OptionType, OrderFilterType } from '../header/Header.tsx';
 import clsx from 'clsx';
 

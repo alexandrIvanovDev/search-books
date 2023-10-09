@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import { BookType } from '../../store/reducers/booksReducer.ts';
 import { api } from '../../api/api.ts';
 import { useFetching } from '../../hooks/useFetching.ts';
-import s from './BookCardPage.module.css';
+import s from './BookCardPage.module.scss';
 import { Loader } from '../../components/loader/Loader.tsx';
 import bookImg from '../../assets/book.jpeg';
+import { Button } from '../../components/button/Button.tsx';
 
 export const BookCardPage = () => {
   const [book, setBook] = useState<BookType>();
@@ -47,9 +48,7 @@ export const BookCardPage = () => {
               <div className={s.description}>{book.volumeInfo.description}</div>
               <div className={s.footerBlock}>
                 <div>Pages count: {book.volumeInfo.pageCount}</div>
-                <button onClick={() => navigate(-1)} className={s.button}>
-                  Back
-                </button>
+                <Button onClick={() => navigate(-1)}>Back</Button>
               </div>
             </div>
           </div>

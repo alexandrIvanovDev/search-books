@@ -1,4 +1,4 @@
-import s from './Header.module.css';
+import s from './Header.module.scss';
 import { SearchInput } from '../searchInput/SearchInput.tsx';
 import { useState } from 'react';
 import { useAppDispatch } from '../../store/store.ts';

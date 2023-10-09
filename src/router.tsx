@@ -6,6 +6,7 @@ import {
 import { Layout } from './components/layout/Layout.tsx';
 import { BooksPage } from './pages/booksPage/BooksPage.tsx';
 import { BookCardPage } from './pages/bookCardPage/BookCardPage.tsx';
+import { ErrorPage } from './pages/errorPage/ErrorPage.tsx';
 
 const routes: RouteObject[] = [
   {
@@ -21,7 +22,7 @@ const routes: RouteObject[] = [
 const router = createBrowserRouter([
   {
     element: <Layout />,
-    errorElement: <div>Error Boundary</div>,
+    errorElement: <ErrorPage />,
     children: routes,
   },
 ]);

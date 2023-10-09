@@ -1,7 +1,7 @@
 import { RxCross2 } from 'react-icons/rx';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
-import s from './SearchInput.module.css';
+import s from './SearchInput.module.scss';
 import clsx from 'clsx';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -33,7 +33,7 @@ export const SearchInput: FC<PropsType> = ({
     setValue(e.currentTarget.value);
   };
 
-  const search = async () => {
+  const search = () => {
     if (value.trim() === '') {
       setError('This field is empty');
       return;
