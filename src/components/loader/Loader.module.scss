@@ -1,8 +1,8 @@
+@import '../../styles/mixins';
+
 .loader {
   position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex(row);
   top: 0;
   left: 0;
   width: 100%;

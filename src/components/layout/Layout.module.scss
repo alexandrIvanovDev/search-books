@@ -1,8 +1,7 @@
+@import '../../styles/mixins';
+
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex(column);
   width: 1200px;
   margin: 0 auto;
 }

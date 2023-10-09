@@ -53,19 +53,18 @@ export const SearchInput: FC<PropsType> = ({
   };
 
   const inputClass = clsx(s.input, error && s.error);
-  const icon = clsx(s.searchIcon, error && s.errorMessage);
+  const icon = clsx(s.searchIcon, error && s.errorIcon);
 
   return (
     <div className={s.inputWrapper}>
       <input
         type='text'
-        placeholder='Search...'
+        placeholder={error ? error : 'Search...'}
         value={value}
         onChange={onInputHandler}
         onKeyDown={onEnterHandler}
         className={inputClass}
       />
-      {error && <div className={s.errorMessage}>{error}</div>}
       {value && <RxCross2 className={s.deleteIcon} onClick={clearInput} />}
       {error ? (
         <FiAlertCircle className={icon} />

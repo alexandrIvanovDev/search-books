@@ -37,11 +37,19 @@
   }
 
   .error {
-    border: 1px solid red;
+    border-color: red;
+    &::placeholder {
+      color: red;
+    }
+    &:hover {
+      border-color: red;
+    }
+    &:focus {
+      border-color: red;
+    }
   }
 
-  .errorMessage {
+  .errorIcon {
     color: red;
-    font-weight: bold;
   }
 }

@@ -20,6 +20,9 @@ export const BooksPage = () => {
   return (
     <div className={s.container}>
       {isLoading && <Loader />}
+      {!items?.length && (
+        <h2 className={s.title}>Enter the name of the book</h2>
+      )}
       <div>
         {totalItems !== 0 && (
           <h3 className={s.result}>Found {totalItems} results</h3>
@@ -28,7 +31,7 @@ export const BooksPage = () => {
           {items ? (
             items.map((b) => <Book book={b} key={b.id} />)
           ) : (
-            <h2>Books not found</h2>
+            <h3 className={s.notFound}>Books not found</h3>
           )}
         </div>
         <div className={s.btnWrapper}>

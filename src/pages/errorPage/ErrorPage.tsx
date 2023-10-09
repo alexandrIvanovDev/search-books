@@ -14,7 +14,7 @@ export const ErrorPage = () => {
         <p>
           <i>{error.statusText || error.message}</i>
         </p>
-        <Button onClick={() => navigate(-1)}>Back</Button>
+        <Button onClick={() => navigate('/')}>Back</Button>
       </div>
     </div>
   );

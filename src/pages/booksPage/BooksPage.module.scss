@@ -3,8 +3,12 @@
   flex-direction: column;
   align-items: center;
 
+  .title {
+    margin: 2rem 0;
+  }
+
   .result {
-    margin: 10px 0;
+    margin: 1rem 0;
     text-align: center;
   }
 
@@ -19,7 +23,7 @@
     justify-content: center;
 
     .btn {
-      margin: 20px 0;
+      margin: 2rem 0;
     }
   }
 }
@@ -27,5 +31,19 @@
 @media (max-width: 1200px) {
   .books {
     justify-content: center;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    .title {
+      margin: 1rem 0;
+    }
+
+    .btnWrapper {
+      .btn {
+        margin: 1rem 0;
+      }
+    }
   }
 }
