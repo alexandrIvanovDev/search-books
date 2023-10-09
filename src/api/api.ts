@@ -14,7 +14,7 @@ export const api = {
         const res = await instance.get(`volumes?q=${term}${categories}`, {
             params: {
                 orderBy: newFilterValue,
-                maxResults: 8,
+                maxResults: 30,
                 key
             }
         });

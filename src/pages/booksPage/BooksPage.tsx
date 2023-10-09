@@ -21,20 +21,18 @@ export const BooksPage = () => {
 
     return (
         <div className={s.container}>
-            {isLoading
-                ? <Loader/>
-                : <div>
-                    {totalItems !== 0 && <h3 className={s.result}>Found {totalItems} results</h3>}
-                    <div className={s.books}>
-                        {items
-                            ? items.map(b => <Book book={b} key={b.id}/>)
-                            : <h2>Books not found</h2>}
-                    </div>
-                    <div className={s.btnWrapper}>
-                        {totalItems !== 0 && <button onClick={loadBooks} className={btnClass}>Load more</button>}
-                    </div>
+            {isLoading && <Loader/>}
+            <div>
+                {totalItems !== 0 && <h3 className={s.result}>Found {totalItems} results</h3>}
+                <div className={s.books}>
+                    {items
+                        ? items.map(b => <Book book={b} key={b.id}/>)
+                        : <h2>Books not found</h2>}
                 </div>
-            }
+                <div className={s.btnWrapper}>
+                    {totalItems !== 0 && <button onClick={loadBooks} className={btnClass}>Load more</button>}
+                </div>
+            </div>
         </div>
     )
 }

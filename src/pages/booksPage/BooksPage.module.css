@@ -11,8 +11,8 @@
 
 .books {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .btnWrapper {
@@ -22,5 +22,4 @@
 
 .btn {
     margin: 20px 0;
-    /*text-align: center;*/
 }
