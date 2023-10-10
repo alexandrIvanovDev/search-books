@@ -9,28 +9,24 @@ type PropsType = {
 };
 
 export const Book: FC<PropsType> = ({ book }) => {
+  const { imageLinks, categories, title, authors } = book.volumeInfo;
+
   return (
     <Link to={`/${book.id}`} className={s.content}>
       <img
-        src={book.volumeInfo.imageLinks?.thumbnail || bookImg}
+        src={imageLinks?.thumbnail || bookImg}
         alt='bookImg'
         className={s.img}
       />
       <div className={s.information}>
-        <div className={s.categories}>
-          {book.volumeInfo.categories && book.volumeInfo.categories[0]}
-        </div>
+        <div className={s.categories}>{categories && categories[0]}</div>
         <div className={s.titleWrapper}>
-          <div
-            className={s.title}
-            data-tooltip={book.volumeInfo.title}
-            title={book.volumeInfo.title}
-          >
-            {book.volumeInfo.title}
+          <div className={s.title} data-tooltip={title} title={title}>
+            {title}
           </div>
         </div>
-        <div className={s.authors} title={book.volumeInfo.authors?.join('')}>
-          {book.volumeInfo.authors}
+        <div className={s.authors} title={authors?.join('')}>
+          {authors}
         </div>
       </div>
     </Link>
