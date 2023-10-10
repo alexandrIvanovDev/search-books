@@ -1,27 +1,15 @@
-# React + TypeScript + Vite
+# React-приложение поиска книг с помощью Google Books API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Документация: https://developers.google.com/books/docs/v1/using.
 
-Currently, two official plugins are available:
+## Стек
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+TypeScript, React, Redux Toolkit, React-Router, Sass, Docker
 
-## Expanding the ESLint configuration
+## Docker
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`docker build -t search-books . `
 
-- Configure the top-level `parserOptions` property like this:
+`docker run --rm --name search-books -p 3000:5173 -d search-books`
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+`http://localhost:3000/`
