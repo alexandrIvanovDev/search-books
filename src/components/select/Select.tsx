@@ -28,7 +28,7 @@ export const Select: FC<PropsType> = (props) => {
 
       {option.map((o) => (
         <option value={o.value} key={o.value}>
-          {o.name}
+          {o.label}
         </option>
       ))}
     </select>

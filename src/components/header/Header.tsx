@@ -11,7 +11,7 @@ export type OrderFilterType = 'relevance' | 'newest';
 
 export type OptionType = {
   value: OrderFilterType | string;
-  name: string;
+  label: string;
 };
 
 export const Header = () => {
@@ -23,18 +23,18 @@ export const Header = () => {
   const dispatch = useAppDispatch();
 
   const sortOptions: Array<OptionType> = [
-    { value: 'relevance', name: 'Relevance' },
-    { value: 'newest', name: 'Newest' },
+    { value: 'relevance', label: 'Relevance' },
+    { value: 'newest', label: 'Newest' },
   ];
 
   const categoriesOptions: Array<OptionType> = [
-    { value: 'all', name: 'All' },
-    { value: 'art', name: 'Art' },
-    { value: 'biography', name: 'Biography' },
-    { value: 'computers', name: 'Computers' },
-    { value: 'history', name: 'History' },
-    { value: 'medical', name: 'Medical' },
-    { value: 'poetry', name: 'Poetry' },
+    { value: 'all', label: 'All' },
+    { value: 'art', label: 'Art' },
+    { value: 'biography', label: 'Biography' },
+    { value: 'computers', label: 'Computers' },
+    { value: 'history', label: 'History' },
+    { value: 'medical', label: 'Medical' },
+    { value: 'poetry', label: 'Poetry' },
   ];
 
   const searchBooks = () => {
