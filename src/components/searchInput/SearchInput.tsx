@@ -35,7 +35,7 @@ export const SearchInput: FC<PropsType> = ({
 
   const search = () => {
     if (value.trim() === '') {
-      setError('This field is empty');
+      setError('This field is required');
       return;
     }
 
